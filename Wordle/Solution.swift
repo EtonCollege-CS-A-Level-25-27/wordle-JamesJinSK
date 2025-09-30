@@ -17,6 +17,15 @@ struct Solution {
     ///   - return: [true, false, true, false, true]
     func exactMatches(guess: [Character], answer: [Character]) -> [Bool] {
         // TODO: Compare each letter in guess to the same index in answer
+        var green: [Bool] = []
+        for i in 0..<guess.count {
+            if guess[i] == answer[i] {
+                green.append(true)
+            } else {
+                green.append(false)
+            }
+        }
+        return green
     }
 
     /// 2️⃣ Return an array of Bools where each value is `true`
@@ -30,7 +39,16 @@ struct Solution {
     ///   - return: [false, true, true, false, false]
     func partialMatches(guess: [Character], answer: [Character]) -> [Bool] {
         // TODO: Use indexing and contains to check for wrong-position matches
-    }
+        var yellow: [Bool] = []
+        for i in 0..<guess.count {
+            if answer.contains(guess[i]) && guess[i] != answer[i] {
+                yellow.append(true)
+            } else {
+                yellow.append(false)
+                }
+            }
+        return yellow
+}
 
     /// 3️⃣ Return an array of emoji strings (["✅", "⚠️", "🛑"]) that show
     /// feedback for each letter in the guess:
@@ -39,6 +57,19 @@ struct Solution {
     /// - 🛑 if the letter is not in the word at all
     func generateFeedback(guess: [Character], answer: [Character]) -> [String] {
         // TODO: Use exactMatches and partialMatches to build feedback array
+        var result: [String] = []
+        var exact = exactMatches(guess, answer)
+        var partial =
+        for i in 0..<guess.count {
+            if green[i] == true {
+                result.append("✅")
+            } else if yellow[i] == true {
+                result.append("⚠️")
+            } else {
+                result.append("🛑")
+            }
+        }
+        return result
     }
 
     /// 4️⃣ Convert an array of emoji strings into a single display string
